@@ -77,6 +77,8 @@ for ANDROID_TARGET_PLATFORM in armeabi-v7a arm64-v8a x86 x86_64; do
     export PATH=$TOOLCHAIN/bin/:$PATH
 
     ./Configure ${OPENSSL_CONFIGURE_ARCH} \
+        --prefix="${ANDROID_LIB_ROOT}/${PLATFORM_OUTPUT_DIR}" \
+        --openssldir="${ANDROID_LIB_ROOT}/${PLATFORM_OUTPUT_DIR}" \
         -D__ANDROID_API__=${ANDROID_API_VERSION} \
         ${OPENSSL_CONFIGURE_OPTIONS}
 
@@ -93,10 +95,9 @@ for ANDROID_TARGET_PLATFORM in armeabi-v7a arm64-v8a x86 x86_64; do
         exit 1
     fi
 
-    mv libcrypto.a "${ANDROID_LIB_ROOT}/${PLATFORM_OUTPUT_DIR}"
-    mv libssl.a "${ANDROID_LIB_ROOT}/${PLATFORM_OUTPUT_DIR}"
-
-    # copy headers
-    mkdir -p "${ANDROID_LIB_ROOT}/${PLATFORM_OUTPUT_DIR}/include/openssl"
-    cp -r "include/openssl" "${ANDROID_LIB_ROOT}/${PLATFORM_OUTPUT_DIR}/include/"
+    # Install
+    make install
+    rm -rf "${ANDROID_LIB_ROOT}/${ANDROID_TARGET_PLATFORM}/share"
+    rm -rf "${ANDROID_LIB_ROOT}/${ANDROID_TARGET_PLATFORM}/misc"
+    rm -rf "${ANDROID_LIB_ROOT}/${ANDROID_TARGET_PLATFORM}/bin"
 done

@@ -2,14 +2,14 @@
 
 set -eux
 
-LIBSSH2_FULL_VERSION="libssh2-1.8.2"
-if [ ! -f "$LIBSSH2_FULL_VERSION.tar.gz" ]; then
-    curl -O https://www.libssh2.org/download/$LIBSSH2_FULL_VERSION.tar.gz
+LIBGIT2_VERSION="0.28.1"
+if [ ! -f "libgit2.tar.gz" ]; then
+    curl https://codeload.github.com/libgit2/libgit2/tar.gz/v${LIBGIT2_VERSION} -o libgit2.tar.gz
 fi
-tar -xvzf $LIBSSH2_FULL_VERSION.tar.gz
+tar -xvzf libgit2.tar.gz
 
-cd $LIBSSH2_FULL_VERSION
-LIBSSH2_FULL_PATH=$(pwd)
+cd libgit2-${LIBGIT2_VERSION}
+LIBGIT2_FULL_PATH=$(pwd)
 
 if [ ! "${MINIMUM_ANDROID_SDK_VERSION}" ]; then
     echo "MINIMUM_ANDROID_SDK_VERSION was not provided, include and rerun"
@@ -26,11 +26,11 @@ if [ ! "${ANDROID_NDK_HOME}" ]; then
     exit 1
 fi
 
-ANDROID_LIB_ROOT=$(pwd)/../libs/libssh2
+ANDROID_LIB_ROOT=$(pwd)/../libs/libgit2
 rm -rf "${ANDROID_LIB_ROOT:?}/*"
 
 for ANDROID_TARGET_PLATFORM in armeabi-v7a arm64-v8a x86 x86_64; do
-    echo "Building libssh2 for ${ANDROID_TARGET_PLATFORM}"
+    echo "Building libgit2 for ${ANDROID_TARGET_PLATFORM}"
     case "${ANDROID_TARGET_PLATFORM}" in
     armeabi-v7a)
         ANDROID_API_VERSION=${MINIMUM_ANDROID_SDK_VERSION}
@@ -54,10 +54,11 @@ for ANDROID_TARGET_PLATFORM in armeabi-v7a arm64-v8a x86 x86_64; do
 
     export OPENSSL_ROOT_DIR=/root/libs/openssl-lib/${ANDROID_TARGET_PLATFORM}/
 
-    cd "$LIBSSH2_FULL_PATH"
+    cd "$LIBGIT2_FULL_PATH"
     mkdir "build-${ANDROID_TARGET_PLATFORM}"
     cd "build-${ANDROID_TARGET_PLATFORM}"
 
+    export PKG_CONFIG_PATH=/root/libs/libssh2/${ANDROID_TARGET_PLATFORM}/lib/pkgconfig/:/root/libs/openssl/${ANDROID_TARGET_PLATFORM}/lib/pkgconfig/
     cmake ../ \
         -DCMAKE_SYSTEM_NAME=Android \
         -DCMAKE_SYSTEM_VERSION=$ANDROID_API_VERSION \
@@ -70,6 +71,8 @@ for ANDROID_TARGET_PLATFORM in armeabi-v7a arm64-v8a x86 x86_64; do
         -DANDROID_ABI=$ANDROID_TARGET_PLATFORM \
         -DANDROID_NATIVE_API_LEVEL=$ANDROID_API_VERSION \
         -DCMAKE_INSTALL_PREFIX=${ANDROID_LIB_ROOT}/${ANDROID_TARGET_PLATFORM}
+
+    #        -DCMAKE_PREFIX_PATH=/root/libs/libssh2/${ANDROID_TARGET_PLATFORM}/ \
 
     if [ $? -ne 0 ]; then
         echo "Error executing cmake"
