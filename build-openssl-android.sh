@@ -2,10 +2,7 @@
 
 set -eux
 
-MINIMUM_ANDROID_SDK_VERSION=21
-MINIMUM_ANDROID_64_BIT_SDK_VERSION=21
 OPENSSL_FULL_VERSION="openssl-1.1.1b"
-
 if [ ! -f "$OPENSSL_FULL_VERSION.tar.gz" ]; then
     curl -O https://www.openssl.org/source/$OPENSSL_FULL_VERSION.tar.gz
 fi
@@ -29,13 +26,7 @@ if [ ! "${ANDROID_NDK_HOME}" ]; then
 fi
 
 ANDROID_LIB_ROOT=../openssl-lib
-OPENSSL_CONFIGURE_OPTIONS="no-pic no-idea no-camellia \
-        no-seed no-bf no-cast no-rc2 no-rc4 no-rc5 no-md2 \
-        no-md4 no-ecdh no-sock no-ssl3 \
-        no-dsa no-dh no-ec no-ecdsa no-tls1 \
-        no-rfc3779 no-whirlpool no-srp \
-        no-mdc2 no-ecdh no-engine \
-        no-srtp -fPIC"
+OPENSSL_CONFIGURE_OPTIONS=""
 
 rm -rf "${ANDROID_LIB_ROOT:?}/*"
 
