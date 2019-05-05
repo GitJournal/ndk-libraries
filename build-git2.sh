@@ -58,7 +58,7 @@ for ANDROID_TARGET_PLATFORM in armeabi-v7a arm64-v8a x86 x86_64; do
     mkdir "build-${ANDROID_TARGET_PLATFORM}"
     cd "build-${ANDROID_TARGET_PLATFORM}"
 
-    export PKG_CONFIG_PATH=/root/libs/libssh2/${ANDROID_TARGET_PLATFORM}/lib/pkgconfig/:/root/libs/openssl/${ANDROID_TARGET_PLATFORM}/lib/pkgconfig/
+    export PKG_CONFIG_PATH=/root/libs/libssh2/${ANDROID_TARGET_PLATFORM}/lib/pkgconfig/:/root/libs/openssl-lib/${ANDROID_TARGET_PLATFORM}/lib/pkgconfig/
     cmake ../ \
         -DCMAKE_SYSTEM_NAME=Android \
         -DCMAKE_SYSTEM_VERSION=$ANDROID_API_VERSION \
