@@ -2,6 +2,6 @@
 
 set -eux
 
-cd libs_test
+cd libs
 find . -type f -not -regex '.*\.[ah]' -exec rm {} \;
 find . -type d -empty -delete
