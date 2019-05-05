@@ -54,9 +54,5 @@ for ANDROID_TARGET_PLATFORM in armeabi-v7a arm64-v8a x86 x86_64; do
         exit 1
     fi
 
-    # Install
     make install
-    rm -rf "${ANDROID_LIB_ROOT}/${ANDROID_TARGET_PLATFORM}/share"
-    rm -rf "${ANDROID_LIB_ROOT}/${ANDROID_TARGET_PLATFORM}/misc"
-    rm -rf "${ANDROID_LIB_ROOT}/${ANDROID_TARGET_PLATFORM}/bin"
 done
