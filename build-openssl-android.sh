@@ -16,7 +16,7 @@ if [ ! "${ANDROID_NDK_HOME}" ]; then
 fi
 
 ANDROID_LIB_ROOT=$(pwd)/../libs/openssl-lib
-OPENSSL_CONFIGURE_OPTIONS=""
+OPENSSL_CONFIGURE_OPTIONS="no-shared"
 
 rm -rf "${ANDROID_LIB_ROOT:?}/*"
 
