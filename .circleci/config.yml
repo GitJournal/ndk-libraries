@@ -8,17 +8,8 @@ jobs:
           name: Build Docker Image
           command: docker build -t vhanda/ndk-libraries .
       - run:
-          name: Build OpenSSL
-          command: docker run -it -v `pwd`/libs/:/root/libs vhanda/ndk-libraries /root/build-openssl-android.sh
-      - run:
-          name: Build libssh2
-          command: docker run -it -v `pwd`/libs/:/root/libs vhanda/ndk-libraries /root/build-ssh2.sh
-      - run:
-          name: Build libgit2
-          command: docker run -it -v `pwd`/libs/:/root/libs vhanda/ndk-libraries /root/build-git2.sh
-      - run:
-          name: Cleanup extra files
-          command: docker run -it -v `pwd`/libs/:/root/libs vhanda/ndk-libraries /root/cleanup.sh
+          name: Build All
+          command: docker run -it -v `pwd`/libs/:/root/libs vhanda/ndk-libraries /root/build_all.sh
       - store_artifacts:
           path: libs
           destination: libs
