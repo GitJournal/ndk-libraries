@@ -2,7 +2,7 @@
 
 set -eux
 
-start=`date +%s`
+start=$(date +%s)
 
 ./build-openssl-android.sh
 ./build-ssh.h
@@ -10,7 +10,7 @@ start=`date +%s`
 ./build-git2.sh
 ./cleanup.sh
 
-end=`date +%s`
-runtime=$((end-start))
+end=$(date +%s)
+runtime=$((end - start))
 
 echo "Script took $runtime seconds"
