@@ -26,6 +26,7 @@ for ANDROID_TARGET_PLATFORM in armeabi-v7a arm64-v8a x86 x86_64; do
     export OPENSSL_ROOT_DIR=/root/libs/openssl-lib/${ANDROID_TARGET_PLATFORM}/
 
     cd "$LIBGIT2_FULL_PATH"
+    rm -rf "build-${ANDROID_TARGET_PLATFORM}"
     mkdir "build-${ANDROID_TARGET_PLATFORM}"
     cd "build-${ANDROID_TARGET_PLATFORM}"
 
