@@ -22,6 +22,7 @@ jobs:
       - run:
           name: Cleanup extra files
           command: docker run -it -v `pwd`/libs/:/root/libs vhanda/ndk-libraries /root/cleanup.sh
+          when: always
       - store_artifacts:
           path: libs
           destination: libs
