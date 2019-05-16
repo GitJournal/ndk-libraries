@@ -11,9 +11,6 @@ jobs:
           name: Build OpenSSL
           command: docker run -it -v `pwd`/libs/:/root/libs vhanda/ndk-libraries /root/build-openssl-android.sh
       - run:
-          name: Build libssh
-          command: docker run -it -v `pwd`/libs/:/root/libs vhanda/ndk-libraries /root/build-ssh.sh
-      - run:
           name: Build libssh2
           command: docker run -it -v `pwd`/libs/:/root/libs vhanda/ndk-libraries /root/build-ssh2.sh
       - run:

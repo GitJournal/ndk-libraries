@@ -5,7 +5,6 @@ set -eux
 start=$(date +%s)
 
 ./build-openssl-android.sh
-./build-ssh.sh
 ./build-ssh2.sh
 ./build-git2.sh
 ./cleanup.sh
