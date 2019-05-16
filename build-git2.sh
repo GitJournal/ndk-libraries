@@ -33,8 +33,9 @@ for ANDROID_TARGET_PLATFORM in armeabi-v7a arm64-v8a x86 x86_64; do
     export PKG_CONFIG_PATH=/root/libs/libssh2/${ANDROID_TARGET_PLATFORM}/lib/pkgconfig/:/root/libs/openssl-lib/${ANDROID_TARGET_PLATFORM}/lib/pkgconfig/
     cmake ../ \
         -DOPENSSL_ROOT_DIR=${OPENSSL_ROOT_DIR} \
-        -DOPENSSL_LIBRARIES=${OPENSSL_ROOT_DIR}/lib \
         -DOPENSSL_INCLUDE_DIR=${OPENSSL_ROOT_DIR}/include \
+        -DOPENSSL_SSL_LIBRARY=${OPENSSL_ROOT_DIR}/lib/libssl.a \
+        -DOPENSSL_CRYPTO_LIBRARY=${OPENSSL_ROOT_DIR}/lib/libcrypto.a \
         -DCMAKE_SYSTEM_NAME=Android \
         -DCMAKE_SYSTEM_VERSION=$ANDROID_API_VERSION \
         -DCMAKE_ANDROID_ARCH_ABI=$ANDROID_TARGET_PLATFORM \
