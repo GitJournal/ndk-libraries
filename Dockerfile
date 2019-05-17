@@ -6,3 +6,5 @@ ENV ANDROID_API_VERSION 21
 
 COPY . /root/
 WORKDIR /root/
+
+RUN /root/build_all.sh
