@@ -20,6 +20,10 @@ jobs:
           name: Cleanup extra files
           command: docker run -it -v `pwd`/libs/:/root/libs vhanda/ndk-libraries /root/cleanup.sh
           when: always
+      - run:
+          name: Compress Artifacts
+          command: tar czf libs.tar libs
+          when: always
       - store_artifacts:
-          path: libs
-          destination: libs
+          path: libs.tar
+          destination: libs.tar
