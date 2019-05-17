@@ -1,0 +1,13 @@
+sudo: required
+services:
+  - docker
+script:
+  - docker build -t vhanda/ndk-libraries .
+  - docker run -it -v `pwd`/libs/:/root/libs vhanda/ndk-libraries /root/build-openssl-android.sh
+  - docker run -it -v `pwd`/libs/:/root/libs vhanda/ndk-libraries /root/build-ssh2.sh
+  - docker run -it -v `pwd`/libs/:/root/libs vhanda/ndk-libraries /root/build-git2.sh
+  - docker run -it -v `pwd`/libs/:/root/libs vhanda/ndk-libraries /root/cleanup.sh
+addons:
+  artifacts:
+    paths:
+      - libs
