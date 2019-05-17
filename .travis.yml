@@ -3,9 +3,9 @@ services:
   - docker
 script:
   - docker build -t vhanda/ndk-libraries .
-  - docker run -it -v `pwd`/libs/:/root/libs vhanda/ndk-libraries /root/build-openssl-android.sh
-  - docker run -it -v `pwd`/libs/:/root/libs vhanda/ndk-libraries /root/build-ssh2.sh
-  - docker run -it -v `pwd`/libs/:/root/libs vhanda/ndk-libraries /root/build-git2.sh
+  - docker run -it -v `pwd`/libs/:/root/libs vhanda/ndk-libraries /root/build-openssl-android.sh &> libs/logs_openssl.txt
+  - docker run -it -v `pwd`/libs/:/root/libs vhanda/ndk-libraries /root/build-ssh2.sh &> libs/logs_ssh2.txt
+  - docker run -it -v `pwd`/libs/:/root/libs vhanda/ndk-libraries /root/build-git2.sh &> libs/logs_git2.txt
   - docker run -it -v `pwd`/libs/:/root/libs vhanda/ndk-libraries /root/cleanup.sh
 addons:
   artifacts:
