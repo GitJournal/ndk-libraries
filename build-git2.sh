@@ -2,7 +2,7 @@
 
 set -eux
 
-LIBGIT2_VERSION="0.28.1"
+LIBGIT2_VERSION="0.28.5"
 if [ ! -f "libgit2.tar.gz" ]; then
     curl https://codeload.github.com/libgit2/libgit2/tar.gz/v${LIBGIT2_VERSION} -o libgit2.tar.gz
 fi
