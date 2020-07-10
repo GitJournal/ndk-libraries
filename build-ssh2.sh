@@ -2,7 +2,7 @@
 
 set -eux
 
-LIBSSH2_FULL_VERSION="libssh2-1.8.2"
+LIBSSH2_FULL_VERSION="libssh2-1.9.0"
 if [ ! -f "$LIBSSH2_FULL_VERSION.tar.gz" ]; then
     curl -O https://www.libssh2.org/download/$LIBSSH2_FULL_VERSION.tar.gz
 fi
