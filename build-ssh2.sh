@@ -47,7 +47,8 @@ for ANDROID_TARGET_PLATFORM in armeabi-v7a arm64-v8a x86 x86_64; do
         -DANDROID_NATIVE_API_LEVEL=$ANDROID_API_VERSION \
         -DCMAKE_INSTALL_PREFIX=${ANDROID_LIB_ROOT}/${ANDROID_TARGET_PLATFORM} \
         -DBUILD_EXAMPLES=OFF \
-        -DBUILD_TESTING=OFF
+        -DBUILD_TESTING=OFF \
+        -DBUILD_SHARED_LIBS=ON
 
     if [ $? -ne 0 ]; then
         echo "Error executing cmake"
