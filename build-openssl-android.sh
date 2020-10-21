@@ -2,7 +2,7 @@
 
 set -eux
 
-OPENSSL_FULL_VERSION="openssl-1.1.1b"
+OPENSSL_FULL_VERSION="openssl-1.1.1h"
 if [ ! -f "$OPENSSL_FULL_VERSION.tar.gz" ]; then
     curl -O https://www.openssl.org/source/$OPENSSL_FULL_VERSION.tar.gz
 fi
